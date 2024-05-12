@@ -36,10 +36,10 @@ public class Mouse {
         if(!threadRunning){
             Task task = new Task(() -> {
                 while(!pressed()){
-                    System.out.println("Not pressed");
+                    System.out.print("");
                 }
                 while(pressed()){
-                    System.out.println("Pressed");
+                    System.out.print("");
                 }
                 event.action();
                 threadRunning = false;
@@ -49,15 +49,16 @@ public class Mouse {
         }
     }
 
-    private static class Task extends Thread{
+    private static class Task extends Thread {
         //Event to be run
         private Event event;
 
         /**
          * Constructor
+         *
          * @param event
          */
-        public Task(Event event){
+        public Task(Event event) {
             System.out.println("Thread running");
             this.event = event;
         }
@@ -66,22 +67,10 @@ public class Mouse {
          *
          */
         @Override
-        public void run(){
+        public void run() {
             event.action();
         }
 
-//        public static void wait(Wait event){
-//            if(!event.waitEvent()){
-//                return;
-//            }
-//            else{
-//                while(event.waitEvent()){
-//                    if(!event.waitEvent()){
-//                        return;
-//                    }
-//                }
-//            }
-//        }
     }
 
 }
