@@ -1,7 +1,7 @@
-package Interactable;
-import Display.Window;
-import Displacement.Coordinates;
-import Items.Geometry.Rectangle;
+package interactable;
+import display.Window;
+import displacement.Coordinates;
+import items.geometry.Rectangle;
 import processing.core.PImage;
 
 public abstract class Button extends Rectangle implements Event {

@@ -1,7 +1,7 @@
-package Items.Geometry;
+package items.geometry;
 
-import Displacement.Coordinates;
-import Display.Window;
+import displacement.Coordinates;
+import display.Window;
 
 public class Circle extends Ellipse{
     /**

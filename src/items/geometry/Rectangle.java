@@ -1,6 +1,6 @@
-package Items.Geometry;
-import Displacement.Coordinates;
-import Display.Window;
+package items.geometry;
+import displacement.Coordinates;
+import display.Window;
 
 public class Rectangle extends Shape{
     public Float width, height;
@@ -16,7 +16,7 @@ public class Rectangle extends Shape{
         this.width = width;
         this.height = height;
     }
-
+    @Override
     public void render(){
         render(()->{
             if(window.isValid()){

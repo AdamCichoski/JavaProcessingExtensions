@@ -1,4 +1,4 @@
-package Display;
+package display;
 @FunctionalInterface
 public interface DisplayItem {
     void display();

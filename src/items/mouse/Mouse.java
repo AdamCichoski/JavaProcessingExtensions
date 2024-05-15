@@ -1,7 +1,8 @@
-package Items.Mouse;
+package items.mouse;
 
-import Display.Window;
-import Interactable.Event;
+import displacement.Coordinates;
+import display.Window;
+import interactable.Event;
 
 public class Mouse {
     private static Window window;
@@ -32,19 +33,47 @@ public class Mouse {
      * Function to wait for the press and release of the mouse to perfomr an action
      * @param event is the event that will be performed upon the release of the mouse button
      */
-    public static void waitRelease(Event event){
-        if(!threadRunning){
-            Task task = new Task(() -> {
-                while(!pressed()){
-                    System.out.print("");
-                }
-                while(pressed()){
-                    System.out.print("");
-                }
+    public static void clickEvent(Event event){
+        runThread(() -> {
+            while(!pressed()){
+                System.out.print("");
+            }
+            while(pressed()){
+                System.out.print("");
+            }
+            event.action();
+            threadRunning = false;
+        });
+    }
+
+    /**
+     * Performs inputted action while the mouse is clicker is being pressed
+     * @param event
+     */
+    public static void whilePressed(Event event){
+        runThread(()-> {
+            while(Mouse.pressed()){
                 event.action();
-                threadRunning = false;
-            });
-            task.start();
+            }
+            threadRunning = false;
+        });
+    }
+
+
+    public static int getX(){
+        return window.mouseX;
+    }
+    public static int getY(){
+        return window.mouseY;
+    }
+    public static Coordinates getCoordinates(){
+        return new Coordinates(window.mouseX,window.mouseY);
+    }
+
+    private static void runThread(Event event){
+        if(!threadRunning){
+            Task t = new Task(event);
+            t.start();
             threadRunning = true;
         }
     }
@@ -53,6 +82,9 @@ public class Mouse {
         //Event to be run
         private Event event;
 
+        public Task(){
+            this(null);
+        }
         /**
          * Constructor
          *

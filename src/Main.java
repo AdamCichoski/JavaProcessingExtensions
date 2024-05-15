@@ -1,14 +1,18 @@
-import Coloring.Color;
-import Display.Window;
-import Items.Geometry.*;
-import Items.Mouse.Mouse;
+import coloring.Color;
+import display.Window;
+import items.geometry.*;
+import items.mouse.Mouse;
 import processing.core.PApplet;
-import Displacement.*;
+import displacement.*;
+import collisionDetection.Collision;
+
+import java.util.ArrayList;
 
 public class Main extends Window{
     Circle tester, player;
     Rectangle rect;
     Color back = Color.BLACK;
+    ArrayList<Circle> circles = new ArrayList<>();
     public static void main(String[] args) {
         String[] AppletArgs = {"Main"};
         PApplet.main(AppletArgs);
@@ -27,9 +31,12 @@ public class Main extends Window{
 
     public void draw(){
         background(back);
-        Mouse.waitRelease(()-> back = (back == Color.RED)? Color.BLACK:Color.RED);
-    }
+        if(Collision.collision(tester, Mouse.getCoordinates())){
+            Mouse.whilePressed(() -> tester.updatePosition(Mouse.getX(), Mouse.getY()));
+        }
+        tester.render();
 
+    }
 
 
 }

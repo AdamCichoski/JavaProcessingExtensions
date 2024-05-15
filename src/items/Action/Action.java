@@ -1,6 +1,6 @@
-package Items.Action;
+package items.Action;
 
-import Items.Geometry.Shape;
+import items.geometry.Shape;
 
 public class Action {
     /**

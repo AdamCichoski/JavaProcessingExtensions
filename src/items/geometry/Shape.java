@@ -1,15 +1,19 @@
-package Items.Geometry;
+package items.geometry;
 
-import Coloring.Color;
-import Displacement.Coordinates;
-import Display.DisplayItem;
-import Display.Renderable;
-import Display.Window;
+import coloring.Color;
+import displacement.Coordinates;
+import display.DisplayItem;
+import display.Renderable;
+import display.Window;
+import physics.Physics;
+
+import java.util.ArrayList;
 
 public abstract class Shape implements Renderable {
     protected Window window;
     protected Coordinates coordinates = new Coordinates(0,0);
     private Color color = null;
+    protected Physics physics;
 
     /**
      * Constructor
@@ -20,6 +24,7 @@ public abstract class Shape implements Renderable {
         this.window = window;
         this.coordinates = (coordinates.validate())? coordinates : this.coordinates;
     }
+    public abstract void render();
 
     /**
      * Abstract method to render a shape
@@ -30,6 +35,22 @@ public abstract class Shape implements Renderable {
             di.display();
         }
         window.fill(Window.DEFAULT_COLOR);
+    }
+
+    /**
+     * Render method for an array of shapes
+     * @param s
+     */
+    public static <S extends Shape> void renderArray(S[] s){
+        for(int i=0; i<s.length; i++){
+            s[i].render();
+        }
+    }
+
+    public static <S extends Shape> void renderArray(ArrayList<S> arr){
+        for(int i=0; i<arr.size(); i++){
+            arr.get(i).render();
+        }
     }
 
     protected void fill(){
@@ -61,4 +82,7 @@ public abstract class Shape implements Renderable {
         this.color = null;
     }
 
+    public void addPhysics(){
+        this.physics = new Physics();
+    }
 }

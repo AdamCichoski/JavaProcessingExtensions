@@ -1,6 +1,6 @@
-package Display;
-import Coloring.Color;
-import Displacement.Coordinates;
+package display;
+import coloring.Color;
+import displacement.Coordinates;
 import processing.core.PApplet;
 import processing.core.PImage;
 

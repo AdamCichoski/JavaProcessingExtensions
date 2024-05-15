@@ -1,4 +1,4 @@
-package Displacement;
+package displacement;
 
 public class Coordinates {
     public float coordinates[] = new float[2];

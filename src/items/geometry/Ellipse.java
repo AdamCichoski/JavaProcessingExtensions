@@ -1,6 +1,6 @@
-package Items.Geometry;
-import Displacement.Coordinates;
-import Display.Window;
+package items.geometry;
+import displacement.Coordinates;
+import display.Window;
 
 public class Ellipse extends Shape{
     protected float width,height;

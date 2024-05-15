@@ -1,7 +1,6 @@
-package Coloring;
+package coloring;
 
-import Display.Window;
-import processing.core.PApplet;
+import display.Window;
 
 public enum Color {
     WHITE(new short[]{255,255,255}),
@@ -25,4 +24,16 @@ public enum Color {
         window = newWindow;
     }
 
+    public static Color randomizeColor(){
+        short rand = (short)(Math.random()*6);
+        switch(rand){
+            case 0: return WHITE;
+            case 1: return BLACK;
+            case 2: return RED;
+            case 3: return YELLOW;
+            case 4: return BLUE;
+            case 5: return GREEN;
+        }
+        return null;
+    }
 }
