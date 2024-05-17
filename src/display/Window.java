@@ -31,4 +31,5 @@ public class Window extends PApplet{
         float[] c = coordinates.toArray();
         image(image, c[0], c[1]);
     }
+
 }
