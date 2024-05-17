@@ -23,11 +23,7 @@ public class Ellipse extends Shape{
     @Override
     public void render(){
         render(()->{
-            if(window.isValid()){
-                this.fill();
-                window.ellipse(coordinates.toArray()[0], coordinates.toArray()[1], width, height);
-            }
-            window.fill(Window.DEFAULT_COLOR);
+            window.ellipse(coordinates.toArray()[0], coordinates.toArray()[1], width, height);
         });
     }
 

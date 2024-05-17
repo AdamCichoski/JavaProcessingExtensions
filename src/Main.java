@@ -12,7 +12,6 @@ public class Main extends Window{
     Circle tester, player;
     Rectangle rect;
     Color back = Color.BLACK;
-    ArrayList<Circle> circles = new ArrayList<>();
     public static void main(String[] args) {
         String[] AppletArgs = {"Main"};
         PApplet.main(AppletArgs);
@@ -27,6 +26,7 @@ public class Main extends Window{
         player = new Circle(this, new Coordinates(100, 200),  50);
         rect = new Rectangle(this, new Coordinates(600, 400), 100f,100f);
         Mouse.setWindow(this);
+        tester.setColor(Color.RED);
     }
 
     public void draw(){

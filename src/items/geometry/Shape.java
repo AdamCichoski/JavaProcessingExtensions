@@ -3,17 +3,14 @@ package items.geometry;
 import coloring.Color;
 import displacement.Coordinates;
 import display.DisplayItem;
-import display.Renderable;
 import display.Window;
+import display.Renderable;
 import physics.Physics;
 
 import java.util.ArrayList;
 
-public abstract class Shape implements Renderable {
-    protected Window window;
+public abstract class Shape extends Renderable{
     protected Coordinates coordinates = new Coordinates(0,0);
-    private Color color = null;
-    protected Physics physics;
 
     /**
      * Constructor
@@ -21,41 +18,12 @@ public abstract class Shape implements Renderable {
      * @param coordinates
      */
     public Shape(Window window, Coordinates coordinates){
+        super(window);
         this.window = window;
         this.coordinates = (coordinates.validate())? coordinates : this.coordinates;
     }
-    public abstract void render();
 
-    /**
-     * Abstract method to render a shape
-     */
-    public void render(DisplayItem di){
-        if(window.isValid()){
-            fill();
-            di.display();
-        }
-        window.fill(Window.DEFAULT_COLOR);
-    }
 
-    /**
-     * Render method for an array of shapes
-     * @param s
-     */
-    public static <S extends Shape> void renderArray(S[] s){
-        for(int i=0; i<s.length; i++){
-            s[i].render();
-        }
-    }
-
-    public static <S extends Shape> void renderArray(ArrayList<S> arr){
-        for(int i=0; i<arr.size(); i++){
-            arr.get(i).render();
-        }
-    }
-
-    protected void fill(){
-        window.fill(color);
-    }
 
     /**
      * Update Position
@@ -74,15 +42,4 @@ public abstract class Shape implements Renderable {
         this.updatePosition(new Coordinates(x,y));
     }
 
-    public void setColor(Color color){
-        this.color = color;
-    }
-
-    public void removeColor(){
-        this.color = null;
-    }
-
-    public void addPhysics(){
-        this.physics = new Physics();
-    }
 }
