@@ -1,6 +1,8 @@
 package display;
 import coloring.Color;
+import items.text.fonts.Font;
 import physics.Physics;
+import processing.core.PFont;
 
 import java.util.ArrayList;
 
@@ -8,6 +10,9 @@ public abstract class Renderable {
     protected Window window;
     protected Color color;
     protected Physics physics;
+    protected short opacity;
+    protected PFont font;
+    protected float textSize = 0;
     /**
      * Constructor
      * @param window
@@ -22,7 +27,12 @@ public abstract class Renderable {
             updatePhysics();
             di.display();
         }
+        resetScreenChanges();
+    }
+
+    private void resetScreenChanges(){
         window.fill(Window.DEFAULT_COLOR);
+
     }
     public void fill(){
         window.fill(color);
@@ -86,5 +96,17 @@ public abstract class Renderable {
      */
     public boolean hasPhysics(){
         return this.physics != null;
+    }
+
+    public void setOpacity(short opacity){
+        this.opacity = opacity;
+    }
+
+    public void setFont(Font font){
+        this.font = window.loadFont(font.getFont());
+    }
+
+    public void setTextSize(float textSize){
+        this.textSize = textSize;
     }
 }

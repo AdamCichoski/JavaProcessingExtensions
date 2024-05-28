@@ -8,10 +8,12 @@ public enum Color {
     RED(new short[]{255,0,0}),
     YELLOW(new short[]{255,255,0}),
     BLUE(new short[]{0,0,255}),
-    GREEN(new short[]{0,255,0});
+    GREEN(new short[]{0,255,0}),
+    DARK_GREEN(new short[]{0,43,13});
 
     public final short COLOR[];
     static Window window;
+    private static final short TOTAL = 7;
     Color(short COLOR[]){
         this.COLOR = COLOR;
     }
@@ -25,7 +27,7 @@ public enum Color {
     }
 
     public static Color randomizeColor(){
-        short rand = (short)(Math.random()*6);
+        short rand = (short)(Math.random()*TOTAL);
         switch(rand){
             case 0: return WHITE;
             case 1: return BLACK;
@@ -33,6 +35,7 @@ public enum Color {
             case 3: return YELLOW;
             case 4: return BLUE;
             case 5: return GREEN;
+            case 6: return DARK_GREEN;
         }
         return null;
     }

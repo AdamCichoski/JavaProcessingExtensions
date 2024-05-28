@@ -1,9 +1,13 @@
 package collisionDetection;
 
+import display.Window;
 import items.geometry.Ellipse;
+import items.geometry.Line;
 import items.geometry.Rectangle;
 import displacement.Coordinates;
+import items.geometry.Segment;
 import items.mouse.Mouse;
+import processing.core.PApplet;
 
 import java.util.ArrayList;
 
@@ -203,5 +207,28 @@ public abstract class Collision {
 
     public static <E extends Ellipse> boolean isSelected(E e, Coordinates c){
         return collision(e, c) && Mouse.pressed();
+    }
+
+    /**
+     * Collisions with Lines and Segments
+     */
+
+//    public static <S extends Segment> boolean collision(S seg, Coordinates c){
+//        return c
+//    }
+//
+//    public static <S extends Segment> boolean collision(S seg, float x, float y){
+//
+//    }
+
+    /**
+     * Boundary detection
+     * @param window
+     * @param c
+     * @return
+     * @param <W>
+     */
+    public static <W extends Window> boolean boundaryCollision(W window, Coordinates c){
+        return (c.getX() >=0 && c.getX() <= window.WIDTH) && (c.getY() >= 0 && c.getX() <= window.HEIGHT);
     }
 }
