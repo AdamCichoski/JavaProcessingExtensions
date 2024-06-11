@@ -16,6 +16,9 @@ public class Rectangle extends Shape{
         this.width = width;
         this.height = height;
     }
+    public Rectangle(Window window, Float width, Float height){
+        this(window, null, width, height);
+    }
     @Override
     public void render(){
         render(()->{

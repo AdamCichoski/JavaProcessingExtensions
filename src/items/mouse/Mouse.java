@@ -2,6 +2,7 @@ package items.mouse;
 
 import displacement.Coordinates;
 import display.Window;
+import interactable.CollisionEvent;
 import interactable.Event;
 
 public class Mouse {
@@ -42,6 +43,34 @@ public class Mouse {
                 System.out.print("");
             }
             event.action();
+            threadRunning = false;
+        });
+    }
+
+    public static void clickEvent(Event event, CollisionEvent cEvent){
+        runThread(()->{
+                breakLine:
+                {
+                    if(!cEvent.action() || pressed()){
+                        break breakLine;
+                    }
+                    while (!pressed()) {
+                        System.out.print("");
+                        if (!cEvent.action()) {
+                            break breakLine;
+                        }
+                    }
+                    while (pressed()) {
+                        System.out.print("");
+                        if(!cEvent.action()){
+                            break breakLine;
+                        }
+                    }
+                    if(!cEvent.action()){
+                        break breakLine;
+                    }
+                    event.action();
+                }
             threadRunning = false;
         });
     }

@@ -231,4 +231,6 @@ public abstract class Collision {
     public static <W extends Window> boolean boundaryCollision(W window, Coordinates c){
         return (c.getX() >=0 && c.getX() <= window.WIDTH) && (c.getY() >= 0 && c.getX() <= window.HEIGHT);
     }
+
+
 }

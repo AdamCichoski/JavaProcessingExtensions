@@ -2,8 +2,8 @@ package items.text.fonts;
 import display.Window;
 import processing.core.PFont;
 public enum Font {
-    ARIAL("arial.ttf"),
-    ARIAL_NARROW("Arialn.ttf"),
+    ARIAL("fontFiles\\arial-font\\arial.ttf"),
+    ARIAL_NARROW("fontFiles\\arial-font\\Arialn.ttf"),
     ARIAL_THICK("ArialTh.ttf"),
     TIMES_NEW_ROMAN("TimesNewRoman.ttf"),
     VEGAN("Vegan.ttf");

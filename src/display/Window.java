@@ -6,15 +6,19 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 
-public class Window extends PApplet{
+public abstract class Window extends PApplet{
     public static final int WIDTH = 1200;
     public static final int HEIGHT = 800;
     public static final Color DEFAULT_COLOR = Color.WHITE;
+    public static PFont DEFAULT_FONT;
     public boolean isValid(){
         return this!=null;
     }
-    public final PFont STANDARD_FONT = loadFont(Font.ARIAL);
 
+    public void setup(){
+        DEFAULT_FONT = createFont("Arial", 20);
+        setupList();
+    }
     /**
      * Adapted fill method to add ease of use, only requiring the color to fill from Color enum
      * @param color
@@ -42,8 +46,14 @@ public class Window extends PApplet{
         image(image, c[0], c[1]);
     }
 
-    public PFont loadFont(Font font){
-        return loadFont(font.getFont());
+    public void image(PImage image, Coordinates coordinates, float width, float height){
+        float[] c = coordinates.toArray();
+        image(image, c[0], c[1], width, height);
     }
 
+    public abstract void setupList();
+
+    public boolean validate(Object o){
+        return o!= null;
+    }
 }

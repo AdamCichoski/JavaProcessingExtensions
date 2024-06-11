@@ -1,5 +1,6 @@
 package display;
 import coloring.Color;
+import displacement.Coordinates;
 import items.text.fonts.Font;
 import physics.Physics;
 import processing.core.PFont;
@@ -8,17 +9,20 @@ import java.util.ArrayList;
 
 public abstract class Renderable {
     protected Window window;
+    protected Coordinates coordinates = new Coordinates(0,0);
     protected Color color;
     protected Physics physics;
     protected short opacity;
-    protected PFont font;
-    protected float textSize = 0;
     /**
      * Constructor
      * @param window
      */
     protected Renderable(Window window){
+        this(window, null);
+    }
+    protected Renderable(Window window, Coordinates coordinates){
         this.window = window;
+        this.coordinates = coordinates;
     }
     public abstract void render();
     public void render(DisplayItem di){
@@ -32,7 +36,7 @@ public abstract class Renderable {
 
     private void resetScreenChanges(){
         window.fill(Window.DEFAULT_COLOR);
-
+        window.textFont(Window.DEFAULT_FONT);
     }
     public void fill(){
         window.fill(color);
@@ -102,11 +106,26 @@ public abstract class Renderable {
         this.opacity = opacity;
     }
 
-    public void setFont(Font font){
-        this.font = window.loadFont(font.getFont());
+    /**
+     * Update Position
+     * @param newCoordinates
+     */
+    public void updatePosition(Coordinates newCoordinates){
+        this.coordinates.updateCoordinates(newCoordinates);
     }
 
-    public void setTextSize(float textSize){
-        this.textSize = textSize;
+    /**
+     * Update Position
+     * @param x
+     * @param y
+     */
+    public void updatePosition(float x, float y){
+        float newX = (x>=0 && x<=window.WIDTH)?x: coordinates.getX();
+        float newY = (y>=0 && y<= window.HEIGHT)? y: coordinates.getY();
+        this.updatePosition(new Coordinates(newX, newY));
+    }
+
+    public Coordinates getCoordinates(){
+        return coordinates;
     }
 }
