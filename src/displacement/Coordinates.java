@@ -9,8 +9,10 @@ public class Coordinates {
      * @param y
      */
     public Coordinates(float x, float y){
-        coordinates = (validateCoordinates(new float[]{x,y}))? new float []{x,y} : null;
+//        coordinates = (validateCoordinates(new float[]{x,y}))? new float []{x,y} : null;
+        coordinates = new float[]{x,y};
     }
+
 
     /**
      * Constructor
@@ -28,10 +30,12 @@ public class Coordinates {
     }
 
     public void updateCoordinates(Coordinates newCoordinates){
-        if(!validateLength(newCoordinates)){
-            System.out.println("Invalid Coordinate Scheme");
+        if(this!=null){
+            if(!validateLength(newCoordinates)){
+                System.out.println("Invalid Coordinate Scheme");
+            }
+            this.coordinates = newCoordinates.toArray();
         }
-        this.coordinates = newCoordinates.toArray();
     }
 
     private boolean validateLength(Coordinates coordinates){
@@ -56,8 +60,5 @@ public class Coordinates {
 
     public float getY(){
         return this.toArray()[1];
-    }
-    public boolean validate(){
-        return this != null;
     }
 }

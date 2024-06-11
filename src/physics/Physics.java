@@ -12,4 +12,8 @@ public class Physics {
 
     }
 
+    public void setAcceleration(int acceleration){
+        this.acceleration = acceleration;
+    }
+
 }

@@ -27,5 +27,4 @@ public abstract class Segment extends Renderable {
     public void update(){
 
     }
-
 }

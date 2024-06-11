@@ -10,8 +10,6 @@ import physics.Physics;
 import java.util.ArrayList;
 
 public abstract class Shape extends Renderable{
-    protected Coordinates coordinates = new Coordinates(0,0);
-
     /**
      * Constructor
      * @param window
@@ -20,26 +18,9 @@ public abstract class Shape extends Renderable{
     public Shape(Window window, Coordinates coordinates){
         super(window);
         this.window = window;
-        this.coordinates = (coordinates.validate())? coordinates : this.coordinates;
+        this.coordinates = (window.validate(coordinates))? coordinates : this.coordinates;
     }
 
 
-
-    /**
-     * Update Position
-     * @param newCoordinates
-     */
-    public void updatePosition(Coordinates newCoordinates){
-        this.coordinates.updateCoordinates(newCoordinates);
-    }
-
-    /**
-     * Update Position
-     * @param x
-     * @param y
-     */
-    public void updatePosition(float x, float y){
-        this.updatePosition(new Coordinates(x,y));
-    }
 
 }
