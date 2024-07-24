@@ -11,8 +11,8 @@ public class Text extends Renderable {
     private PFont font;
     private Coordinates coordinates;
     private String message = "";
-    private final float DEFAULT_TEXT_SIZE = 20;
-    private Float size;
+    public final float DEFAULT_TEXT_SIZE = 20;
+    private Float size = DEFAULT_TEXT_SIZE;
     /**
      * Constructor
      * @param window
@@ -31,6 +31,9 @@ public class Text extends Renderable {
         super(window);
         this.coordinates = coordinates;
         setFont(font);
+        if(window != null && font == null){
+            this.font = window.createFont("Georgia", DEFAULT_TEXT_SIZE);
+        }
     }
 
     /**
@@ -44,11 +47,12 @@ public class Text extends Renderable {
     }
 
     public void setFont(String font){
-//        this.font = window.createFont(font, (size == null)? DEFAULT_TEXT_SIZE : size);
         this.font = window.createFont(font, 50);
-
     }
 
+    public Float getSize(){
+        return size;
+    }
     public void setFontSize(float size){
         this.size = size;
     }

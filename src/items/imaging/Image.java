@@ -9,6 +9,7 @@ import processing.core.PImage;
 public class Image <S extends Shape> extends Renderable {
     private PImage image;
     private S shape = null;
+    private Coordinates center;
     private float width = window.WIDTH, height = window.HEIGHT;
     public Image(Window window, Coordinates coordinates){
         super(window, coordinates);
@@ -43,9 +44,17 @@ public class Image <S extends Shape> extends Renderable {
 
     public void setShape(S shape){
         this.shape = shape;
+        center = setCenter();
     }
     public S getShape(){
         return shape;
+    }
+    private Coordinates setCenter(){
+        return (shape == null)? null : new Coordinates(coordinates.getX() +(width/2), coordinates.getY() +(height/2));
+    }
+
+    public Coordinates getCenter(){
+        return this.center;
     }
 
 }
